@@ -161,12 +161,10 @@ body{font-family:'Cormorant Garamond',Georgia,serif;background:#060c18;color:#f0
 }
 
 .hero-eyebrow{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1rem,2.2vw,1.3rem);
-  font-style:italic;letter-spacing:.08em;text-transform:none;
-  color:var(--white);margin-top:1.2rem;margin-bottom:0;
+  font-size:clamp(.78rem,1.5vw,.95rem);letter-spacing:.5em;text-transform:uppercase;
+  color:var(--white);margin-top:1.4rem;margin-bottom:0;
   animation:fadeUp 1s ease .7s both;
-  opacity:.85;
+  text-shadow:0 0 20px rgba(137,207,240,.4);
 }
 .hero-names{
   font-family:'Great Vibes',cursive;
@@ -191,8 +189,8 @@ body{font-family:'Cormorant Garamond',Georgia,serif;background:#060c18;color:#f0
 }
 
 .hero-details{
-  display:flex;gap:3rem;justify-content:center;align-items:center;
-  margin-top:2.5rem;flex-wrap:wrap;animation:fadeUp 1s ease 1.2s both;
+  display:flex;flex-direction:column;gap:1.2rem;align-items:center;
+  margin-top:2.5rem;animation:fadeUp 1s ease 1.2s both;
 }
 .det{text-align:center}
 .det-lbl{font-size:.62rem;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
@@ -705,7 +703,6 @@ footer::before{
         <div class="det-lbl">Hora</div>
         <div class="det-val">4:00 PM</div>
       </div>
-      <div class="det-sep"></div>
       <div class="det">
         <div class="det-lbl">Ceremonia</div>
         <div class="det-val">Catedral Basílica Metropolitana de Cartagena</div>
