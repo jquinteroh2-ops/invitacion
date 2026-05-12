@@ -545,6 +545,21 @@ footer::before{
 .carta-btn:hover{border-color:rgba(139,94,42,.7);color:rgba(40,20,4,.85)}
 .carta-btn-icon{font-size:.75rem;transition:transform .3s ease}
 .carta-btn:hover .carta-btn-icon{transform:translateX(4px)}
+
+/* barra de progreso de 8 segundos */
+.carta-progress{
+  width:180px;height:1px;
+  background:rgba(139,94,42,.15);
+  margin:1.5rem auto 0;border-radius:1px;
+  overflow:hidden;
+}
+.carta-progress-bar{
+  height:100%;width:0%;
+  background:linear-gradient(to right,rgba(139,94,42,.3),rgba(139,94,42,.7));
+  border-radius:1px;
+  transition:width 8s linear;
+}
+.carta-progress-bar.run{width:100%}
 </style>
 </head>
 <body>
@@ -602,7 +617,7 @@ footer::before{
     </p>
     <div class="carta-detail">
       <div class="carta-date">Domingo, 16 de Agosto de 2026</div>
-      <div class="carta-place">Catedral de Cartagena de Indias</div>
+      <div class="carta-place">Catedral Basílica Metropolitana de Cartagena de Indias</div>
       <div class="carta-time">4:00 de la tarde</div>
     </div>
     <div class="carta-div">
@@ -618,53 +633,12 @@ footer::before{
     <button class="carta-btn" onclick="openInvitation()">
       Ver la invitación &nbsp;<span class="carta-btn-icon">→</span>
     </button>
+    <div class="carta-progress"><div class="carta-progress-bar" id="cartaBar"></div></div>
   </div>
 </div>
 
 <!-- ══════ INVITACIÓN ══════ -->
 <div id="scene-inv">
-
-  <!-- HERO -->
-  <section class="hero">
-    <div class="hero-line" style="left:8%"></div>
-    <div class="hero-line" style="left:92%"></div>
-    <p class="hero-eyebrow">Con todo nuestro amor, los invitamos a celebrar</p>
-    <h1 class="hero-names">
-      Katerine
-      <span class="hero-amp">&amp;</span>
-      Simon
-    </h1>
-    <div class="hero-divider">
-      <div class="hero-divider-line"></div>
-      <span class="hero-divider-icon">✦</span>
-      <div class="hero-divider-line"></div>
-    </div>
-    <p class="hero-date">Domingo, 16 de Agosto de 2026</p>
-    <div class="hero-details">
-      <div class="det">
-        <div class="det-lbl">Hora</div>
-        <div class="det-val">4:00 PM</div>
-      </div>
-      <div class="det-sep"></div>
-      <div class="det">
-        <div class="det-lbl">Ceremonia</div>
-        <div class="det-val">Catedral de Cartagena</div>
-      </div>
-    </div>
-    <div class="scroll-hint"><div class="scroll-arrow"></div></div>
-  </section>
-
-  <!-- QUOTE -->
-  <div class="quote-sec reveal">
-    <span class="q-mark">"</span>
-    <p class="q-text">
-      Dos almas que se encontraron por obra del destino,<br>
-      hoy se unen en un amor eterno para compartir<br>
-      cada instante, cada sueño, cada amanecer.
-    </p>
-    <span class="q-mark" style="transform:rotate(180deg);display:block;line-height:.3">"</span>
-    <p class="q-author">Katerine &amp; Simon &nbsp;·&nbsp; 2026</p>
-  </div>
 
   <!-- COUNTDOWN -->
   <div class="cd-sec">
@@ -693,6 +667,47 @@ footer::before{
       <div class="cd-unit"><span class="cd-unit-n" id="cdS">--</span><div class="cd-unit-l">Segundos</div></div>
     </div>
   </div>
+
+  <!-- QUOTE -->
+  <div class="quote-sec reveal">
+    <span class="q-mark">"</span>
+    <p class="q-text">
+      Dos almas que se encontraron por obra del destino,<br>
+      hoy se unen en un amor eterno para compartir<br>
+      cada instante, cada sueño, cada amanecer.
+    </p>
+    <span class="q-mark" style="transform:rotate(180deg);display:block;line-height:.3">"</span>
+    <p class="q-author">Katerine &amp; Simon &nbsp;·&nbsp; 2026</p>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-line" style="left:8%"></div>
+    <div class="hero-line" style="left:92%"></div>
+    <h1 class="hero-names">
+      Katerine
+      <span class="hero-amp">&amp;</span>
+      Simon
+    </h1>
+    <p class="hero-eyebrow">Con todo nuestro amor, los invitamos a celebrar</p>
+    <div class="hero-divider">
+      <div class="hero-divider-line"></div>
+      <span class="hero-divider-icon">✦</span>
+      <div class="hero-divider-line"></div>
+    </div>
+    <p class="hero-date">Domingo, 16 de Agosto de 2026</p>
+    <div class="hero-details">
+      <div class="det">
+        <div class="det-lbl">Hora</div>
+        <div class="det-val">4:00 PM</div>
+      </div>
+      <div class="det-sep"></div>
+      <div class="det">
+        <div class="det-lbl">Ceremonia</div>
+        <div class="det-val">Catedral Basílica Metropolitana de Cartagena</div>
+      </div>
+    </div>
+  </section>
 
   <!-- GALLERY -->
   <div class="gal-sec">
@@ -833,8 +848,12 @@ function openEnv(){
     setTimeout(()=>{
       sc.classList.add('show');
       se.style.display='none';
+      requestAnimationFrame(()=>requestAnimationFrame(()=>{
+        const bar=document.getElementById('cartaBar');
+        if(bar) bar.classList.add('run');
+      }));
     },100);
-    setTimeout(openInvitation,4500);
+    setTimeout(openInvitation,1000);
   },2400);
 }
 
