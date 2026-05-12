@@ -429,11 +429,133 @@ footer::before{
   #lb-p{left:.5rem}#lb-nx{right:.5rem}
   .cd-colon{display:none}
 }
+
+/* ══ MUSIC BTN ══ */
+#musicBtn{
+  position:fixed;bottom:1.4rem;right:1.4rem;z-index:9999;
+  width:42px;height:42px;border-radius:50%;
+  background:rgba(137,207,240,.1);
+  border:1px solid rgba(137,207,240,.3);
+  color:var(--blue);font-size:1.1rem;cursor:pointer;
+  display:none;align-items:center;justify-content:center;
+  transition:all .3s;backdrop-filter:blur(8px);
+}
+#musicBtn.active{display:flex}
+#musicBtn:hover{background:rgba(137,207,240,.22);border-color:rgba(137,207,240,.6)}
+#musicBtn.muted{color:rgba(137,207,240,.4)}
+
+/* ══ SCENE CARTA ══ */
+#scene-carta{
+  position:fixed;inset:0;z-index:25;
+  display:none;align-items:center;justify-content:center;
+  background:radial-gradient(ellipse at 50% 40%,#0c1e3c 0%,#040810 100%);
+  opacity:0;transition:opacity .8s ease;
+  padding:1.5rem;overflow-y:auto;
+}
+#scene-carta.show{opacity:1}
+
+.carta{
+  position:relative;
+  max-width:540px;width:100%;
+  background:linear-gradient(160deg,#f9f4e8 0%,#f2ead8 50%,#ede3cc 100%);
+  border:1px solid rgba(180,150,100,.4);
+  padding:clamp(2rem,6vw,3.5rem) clamp(1.5rem,5vw,3rem);
+  text-align:center;
+  box-shadow:0 30px 80px rgba(0,0,0,.75),inset 0 0 80px rgba(180,150,100,.08);
+  transform:translateY(40px) scale(.95);
+  transition:transform 1s cubic-bezier(.2,.8,.3,1);
+}
+#scene-carta.show .carta{transform:translateY(0) scale(1)}
+.carta::before{
+  content:'';position:absolute;inset:12px;
+  border:1px solid rgba(150,120,60,.25);pointer-events:none;
+}
+.carta-ornament{
+  font-size:1.3rem;color:rgba(120,80,30,.5);
+  letter-spacing:.7em;margin-bottom:1.4rem;display:block;
+}
+.carta-tag{
+  font-size:.58rem;letter-spacing:.55em;text-transform:uppercase;
+  color:rgba(100,70,30,.55);margin-bottom:1.6rem;
+}
+.carta-honor{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(.8rem,1.9vw,.92rem);font-style:italic;
+  color:rgba(40,25,8,.5);margin-bottom:.8rem;
+}
+.carta-names{
+  font-family:'Great Vibes',cursive;
+  font-size:clamp(2.4rem,8vw,3.6rem);
+  color:#2a1a08;line-height:1.05;
+  text-shadow:0 1px 3px rgba(100,60,10,.12);
+  margin:.4rem 0;
+}
+.carta-amp{color:#8b5e2a}
+.carta-div{
+  display:flex;align-items:center;gap:1rem;
+  margin:1.2rem auto;max-width:260px;
+}
+.carta-div-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(150,120,60,.4),transparent)}
+.carta-body{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(.88rem,2.1vw,1.04rem);
+  font-style:italic;line-height:1.9;
+  color:rgba(40,25,8,.65);
+  margin:1.2rem 0;
+}
+.carta-detail{margin:1.8rem 0}
+.carta-date{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(1rem,2.4vw,1.2rem);
+  color:#2a1a08;font-weight:600;margin-bottom:.4rem;
+}
+.carta-place{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(.82rem,1.9vw,.96rem);
+  color:rgba(40,25,8,.6);font-style:italic;
+}
+.carta-time{
+  font-size:.72rem;letter-spacing:.38em;text-transform:uppercase;
+  color:rgba(100,70,30,.58);margin-top:.4rem;
+}
+.carta-footer{
+  margin-top:1.8rem;
+  font-size:.55rem;letter-spacing:.5em;text-transform:uppercase;
+  color:rgba(100,70,30,.38);
+}
+.carta-btn{
+  display:inline-flex;align-items:center;gap:.6rem;
+  margin-top:2rem;padding:.75rem 2rem;
+  background:transparent;
+  border:1px solid rgba(139,94,42,.45);
+  color:rgba(60,35,8,.65);
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(.78rem,1.8vw,.9rem);
+  font-style:italic;letter-spacing:.12em;
+  cursor:pointer;border-radius:2px;
+  transition:all .4s ease;
+  position:relative;overflow:hidden;
+}
+.carta-btn::before{
+  content:'';position:absolute;inset:0;
+  background:rgba(139,94,42,.07);
+  transform:translateX(-100%);transition:transform .4s ease;
+}
+.carta-btn:hover::before{transform:translateX(0)}
+.carta-btn:hover{border-color:rgba(139,94,42,.7);color:rgba(40,20,4,.85)}
+.carta-btn-icon{font-size:.75rem;transition:transform .3s ease}
+.carta-btn:hover .carta-btn-icon{transform:translateX(4px)}
 </style>
 </head>
 <body>
 
 <canvas id="bgCanvas"></canvas>
+
+<audio id="bgMusic" loop>
+  <source src="Atado a tu amor - Raulin Rosendo (2001) - Salsomano97 ElP (youtube).mp3" type="audio/mpeg">
+</audio>
+
+<button id="musicBtn" onclick="toggleMusic()" title="Música">♪</button>
 
 <!-- ══════ SOBRE ══════ -->
 <div id="scene-env">
@@ -455,6 +577,47 @@ footer::before{
       <div class="seal" id="seal"><span class="seal-g">♥</span></div>
     </div>
     <p class="env-hint" id="envHint">✦ &nbsp; Toca para abrir &nbsp; ✦</p>
+  </div>
+</div>
+
+<!-- ══════ CARTA ══════ -->
+<div id="scene-carta">
+  <div class="carta">
+    <span class="carta-ornament">✦ ❧ ✦</span>
+    <p class="carta-tag">Invitación de Boda</p>
+    <p class="carta-honor">Con la bendición de Dios y de sus familias</p>
+    <div class="carta-names">
+      Katerine<br>
+      <span class="carta-amp">&amp;</span><br>
+      Simon
+    </div>
+    <div class="carta-div">
+      <div class="carta-div-line"></div>
+      <span style="color:rgba(150,120,60,.5);font-size:.65rem">✦</span>
+      <div class="carta-div-line"></div>
+    </div>
+    <p class="carta-body">
+      tienen el honor de invitarle a compartir<br>
+      la alegría de su matrimonio
+    </p>
+    <div class="carta-detail">
+      <div class="carta-date">Domingo, 16 de Agosto de 2026</div>
+      <div class="carta-place">Catedral de Cartagena de Indias</div>
+      <div class="carta-time">4:00 de la tarde</div>
+    </div>
+    <div class="carta-div">
+      <div class="carta-div-line"></div>
+      <span style="color:rgba(150,120,60,.5);font-size:.65rem">♥</span>
+      <div class="carta-div-line"></div>
+    </div>
+    <p class="carta-body" style="font-size:clamp(.82rem,1.8vw,.93rem)">
+      Su presencia será el regalo más preciado<br>
+      en este día tan especial para nosotros.
+    </p>
+    <p class="carta-footer">16 · 08 · 2026 &nbsp;·&nbsp; Cartagena, Colombia</p>
+    <button class="carta-btn" onclick="openInvitation()">
+      Ver la invitación &nbsp;<span class="carta-btn-icon">→</span>
+    </button>
   </div>
 </div>
 
@@ -480,7 +643,7 @@ footer::before{
     <div class="hero-details">
       <div class="det">
         <div class="det-lbl">Hora</div>
-        <div class="det-val">5:00 PM</div>
+        <div class="det-val">4:00 PM</div>
       </div>
       <div class="det-sep"></div>
       <div class="det">
@@ -616,7 +779,7 @@ let tk=0;
 (function loop(){cx.clearRect(0,0,W,H);tk++;pts.forEach(p=>{p.tick(tk);p.draw()});requestAnimationFrame(loop)})();
 
 /* ── COUNTDOWN — corre siempre, nunca se reinicia ── */
-const WEDDING=new Date('2026-08-16T17:00:00');
+const WEDDING=new Date('2026-08-16T16:00:00');
 const START  =new Date('2025-08-16T00:00:00');
 const CIRC   =2*Math.PI*94; // 590.7
 
@@ -651,16 +814,9 @@ tickCD();setInterval(tickCD,1000);
 /* ── ENVELOPE ── */
 let envOpen=false;
 
-// Si ya lo abrieron, saltar directo a la invitación
-if(localStorage.getItem('inv')===('1')){
-  document.getElementById('scene-env').style.display='none';
-  const si=document.getElementById('scene-inv');
-  si.style.display='block';si.style.opacity='1';si.classList.add('show');
-  setTimeout(initReveal,120);
-}
-
 function openEnv(){
   if(envOpen)return;envOpen=true;
+  startMusic();
   const env=document.getElementById('envelope');
   const seal=document.getElementById('seal');
   const hint=document.getElementById('envHint');
@@ -672,13 +828,13 @@ function openEnv(){
   setTimeout(()=>{
     const se=document.getElementById('scene-env');
     se.classList.add('hide');
-    const si=document.getElementById('scene-inv');
-    si.style.display='block';
+    const sc=document.getElementById('scene-carta');
+    sc.style.display='flex';
     setTimeout(()=>{
-      si.classList.add('show');se.style.display='none';
-      localStorage.setItem('inv','1');
-      initReveal();
-    },600);
+      sc.classList.add('show');
+      se.style.display='none';
+    },100);
+    setTimeout(openInvitation,4500);
   },2400);
 }
 
@@ -688,6 +844,42 @@ document.getElementById('envelope').addEventListener('mousemove',e=>{
   s.style.cssText=`position:fixed;left:${e.clientX}px;top:${e.clientY}px;font-size:12px;pointer-events:none;z-index:100;color:#89CFF0;animation:sparkOut .8s ease-out forwards;transform-origin:center`;
   s.textContent='✦';document.body.appendChild(s);setTimeout(()=>s.remove(),800);
 });
+
+/* ── MUSIC ── */
+const music=document.getElementById('bgMusic');
+const musicBtn=document.getElementById('musicBtn');
+music.volume=0.5;
+
+function startMusic(){
+  music.play().then(()=>{
+    musicBtn.classList.add('active');
+  }).catch(()=>{});
+}
+function toggleMusic(){
+  if(music.muted){
+    music.muted=false;
+    musicBtn.textContent='♪';
+    musicBtn.classList.remove('muted');
+  } else {
+    music.muted=true;
+    musicBtn.textContent='♪';
+    musicBtn.classList.add('muted');
+  }
+}
+
+function openInvitation(){
+  const sc=document.getElementById('scene-carta');
+  sc.classList.remove('show');
+  setTimeout(()=>{
+    sc.style.display='none';
+    const si=document.getElementById('scene-inv');
+    si.style.display='block';
+    setTimeout(()=>{
+      si.classList.add('show');
+      initReveal();
+    },100);
+  },800);
+}
 
 /* ── SCROLL REVEAL ── */
 function initReveal(){
