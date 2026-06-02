@@ -411,6 +411,38 @@ footer::before{
   50.1%{transform:scaleY(1);transform-origin:bottom}
   100%{transform:scaleY(0);transform-origin:bottom}
 }
+
+/* ── SCROLL HINT (debajo del countdown) ── */
+.cd-scroll-hint{
+  display:flex;flex-direction:column;align-items:center;gap:.35rem;
+  margin-top:2.8rem;
+  animation:fadeIn 1.2s ease 1s both;
+  cursor:pointer;
+}
+.cd-scroll-hint span{
+  font-family:'Cormorant Garamond',serif;
+  font-size:.82rem;letter-spacing:.22em;text-transform:uppercase;
+  color:rgba(137,207,240,.55);
+  margin-bottom:.5rem;
+}
+.cd-chevrons{display:flex;flex-direction:column;align-items:center;gap:2px}
+.cd-chevron{
+  width:22px;height:11px;
+  border-right:1px solid rgba(137,207,240,.6);
+  border-bottom:1px solid rgba(137,207,240,.6);
+  transform:rotate(45deg);
+  opacity:0;
+  animation:chevronDrop 1.8s ease-in-out infinite;
+}
+.cd-chevron:nth-child(1){animation-delay:0s}
+.cd-chevron:nth-child(2){animation-delay:.25s}
+.cd-chevron:nth-child(3){animation-delay:.5s}
+@keyframes chevronDrop{
+  0%{opacity:0;transform:rotate(45deg) translate(-4px,-4px)}
+  40%{opacity:.9}
+  80%{opacity:0;transform:rotate(45deg) translate(4px,4px)}
+  100%{opacity:0}
+}
 @keyframes sparkOut{0%{transform:scale(0) rotate(0deg);opacity:1}100%{transform:scale(1.6) rotate(180deg);opacity:0}}
 
 @media(max-width:560px){
