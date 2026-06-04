@@ -186,6 +186,21 @@ body{font-family:'Cormorant Garamond',Georgia,serif;background:#060c18;color:#f0
 .det-lbl{font-size:.62rem;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
 .det-val{font-family:'Playfair Display',serif;font-size:clamp(.95rem,2.2vw,1.2rem);color:var(--white)}
 .det-sep{width:1px;height:48px;background:linear-gradient(180deg,transparent,var(--blue-d),transparent)}
+.map-btn{
+  display:inline-flex;align-items:center;gap:.4rem;
+  margin-top:.7rem;
+  padding:.35rem .9rem;
+  background:rgba(137,207,240,.07);
+  border:1px solid rgba(137,207,240,.3);
+  color:var(--blue);
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(.68rem,1.6vw,.78rem);
+  font-style:italic;letter-spacing:.12em;
+  text-decoration:none;border-radius:2px;
+  transition:all .35s ease;
+}
+.map-btn:hover{background:rgba(137,207,240,.15);border-color:rgba(137,207,240,.6);color:#fff}
+.map-btn-icon{font-style:normal;font-size:.8rem}
 
 .scroll-hint{
   position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
