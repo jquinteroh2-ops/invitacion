@@ -236,6 +236,17 @@ let tx=0;
 lbEl.addEventListener('touchstart',e=>{tx=e.touches[0].clientX},{passive:true});
 lbEl.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-tx;if(Math.abs(dx)>50)lbNav(dx<0?1:-1)});
 
+/* ── CATEDRAL SLIDER ── */
+let catIdx=0;
+const CAT_TOTAL=2;
+function catSlide(dir){catGoTo((catIdx+dir+CAT_TOTAL)%CAT_TOTAL)}
+function catGoTo(idx){
+  catIdx=idx;
+  const track=document.getElementById('catTrack');
+  if(track)track.style.transform=`translateX(-${catIdx*100}%)`;
+  document.querySelectorAll('.cat-dot').forEach((d,i)=>d.classList.toggle('active',i===catIdx));
+}
+
 /* ── RSVP ── */
 // Reemplaza este valor con la URL del Web App de Google Apps Script
 const SHEETS_URL = 'https://script.google.com/macros/s/AKfycbzEMdqDdxDC6DSYagPTBD_Hx7ViYgQ74C5x_7y8OolT0QvxzacPihnH21EMJF4MPLOJ/exec';

@@ -159,13 +159,43 @@
       <div class="det">
         <div class="det-lbl">Ceremonia</div>
         <div class="det-val">Catedral Basílica Metropolitana de Cartagena</div>
+        <div class="cat-slider">
+          <div class="cat-track" id="catTrack">
+            <div class="cat-slide">
+              <img src="Fotos Matrimonio/catedral 1.jpg" alt="Catedral 1">
+            </div>
+            <div class="cat-slide">
+              <img src="Fotos Matrimonio/catedral 2.jpg" alt="Catedral 2">
+            </div>
+          </div>
+          <button type="button" class="cat-arrow cat-prev" onclick="catSlide(-1)">‹</button>
+          <button type="button" class="cat-arrow cat-next" onclick="catSlide(1)">›</button>
+          <div class="cat-dots" id="catDots">
+            <span class="cat-dot active" onclick="catGoTo(0)"></span>
+            <span class="cat-dot" onclick="catGoTo(1)"></span>
+          </div>
+          <a class="map-img-btn-ov cat-link" href="https://maps.app.goo.gl/QFWircsmVGuqJGS99" target="_blank" rel="noopener">
+            <svg class="map-pin-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.686 2 6 4.686 6 8c0 4.5 6 13 6 13s6-8.5 6-13c0-3.314-2.686-6-6-6z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              <circle cx="12" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/>
+            </svg>
+            <span class="map-img-btn-lbl">Ver ubicación</span>
+          </a>
+        </div>
       </div>
       <div class="det-sep"></div>
       <div class="det">
         <div class="det-lbl">Recepción</div>
-        <a class="det-loc" href="https://www.google.com/local/place/fid/0xa8c0b1e863ec60cb:0xc2b3bad15d773736/photosphere?iu=https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid%3DON_9FOdIodP2U4h9CB-Tvw%26cb_client%3Dsearch.gws-prod.gps%26yaw%3D240.58803%26pitch%3D0%26thumbfov%3D100%26w%3D0%26h%3D0&ik=CAISFk9OXzlGT2RJb2RQMlU0aDlDQi1Udnc%3D&sa=X&ved=2ahUKEwi1-6igpPiVAxVqfDABHW6_B9UQpx96BAgaEBI" target="_blank" rel="noopener noreferrer">
-          <img class="det-loc-img" src="Fotos Matrimonio/ubicacion-recepcion.jpg" alt="Ubicación de la recepción">
-          <div class="det-val">La Toscana, Arjona - Bolívar</div>
+        <div class="det-val">La Toscana, Arjona - Bolívar</div>
+        <a class="map-img-btn" href="https://www.google.com/local/place/fid/0xa8c0b1e863ec60cb:0xc2b3bad15d773736/photosphere?iu=https://streetviewpixels-pa.googleapis.com/v1/thumbnail?panoid%3DON_9FOdIodP2U4h9CB-Tvw%26cb_client%3Dsearch.gws-prod.gps%26yaw%3D240.58803%26pitch%3D0%26thumbfov%3D100%26w%3D0%26h%3D0&ik=CAISFk9OXzlGT2RJb2RQMlU0aDlDQi1Udnc%3D&sa=X&ved=2ahUKEwi1-6igpPiVAxVqfDABHW6_B9UQpx96BAgaEBI" target="_blank" rel="noopener">
+          <img src="Fotos Matrimonio/ubicacion-recepcion.jpg" alt="Ubicación de la recepción">
+          <div class="map-img-btn-ov">
+            <svg class="map-pin-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2C8.686 2 6 4.686 6 8c0 4.5 6 13 6 13s6-8.5 6-13c0-3.314-2.686-6-6-6z" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/>
+              <circle cx="12" cy="8" r="2" stroke="currentColor" stroke-width="1.4"/>
+            </svg>
+            <span class="map-img-btn-lbl">Ver ubicación</span>
+          </div>
         </a>
       </div>
     </div>
