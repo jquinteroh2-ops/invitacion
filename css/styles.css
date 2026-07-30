@@ -186,6 +186,9 @@ body{font-family:'Cormorant Garamond',Georgia,serif;background:#060c18;color:#f0
 .det-lbl{font-size:.62rem;letter-spacing:.42em;text-transform:uppercase;color:var(--muted);margin-bottom:.4rem}
 .det-val{font-family:'Playfair Display',serif;font-size:clamp(.95rem,2.2vw,1.2rem);color:var(--white)}
 .det-sep{width:1px;height:48px;background:linear-gradient(180deg,transparent,var(--blue-d),transparent)}
+.det-loc{display:flex;flex-direction:column;align-items:center;gap:.55rem;text-decoration:none}
+.det-loc-img{width:88px;height:88px;object-fit:cover;border-radius:12px;border:1px solid var(--muted-lo);box-shadow:0 6px 18px rgba(0,0,0,.4);transition:transform .3s ease}
+.det-loc:hover .det-loc-img{transform:scale(1.06)}
 
 .scroll-hint{
   position:absolute;bottom:2.5rem;left:50%;transform:translateX(-50%);
